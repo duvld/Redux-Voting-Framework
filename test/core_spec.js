@@ -87,6 +87,89 @@ describe('application logic', () => {
 
 		});
 
+		// it('puts winner of current vote back to entries', () => {
+		// 	const state = Map({
+		// 		vote: Map({
+		// 			pair: List.of('Trainspotting', '28 days later'),
+		// 			tally: Map({
+		// 				'Trainspotting': 4,
+		// 				'28 days later': 2
+		// 			}),
+		// 		}),
+		// 		entries: List.of('Sunshine', 'Millions', '127 Hours')
+		// 	});
+		// 	const nextState = next(state);
+
+		// 	expect(nextState).to.equal(Map({
+		// 		vote: Map({
+		// 			pair: List.of('Sunshine', 'Millions')
+		// 		}),
+		// 		entries: List.of('127 hours', 'Trainspotting')
+		// 	}));
+		// });
+
+		// it('puts both from tied vote back to entries', () => {
+		// 	const state = Map({
+		// 		vote: Map({
+		// 			pair: List.of('Trainspotting', '28 days later'),
+		// 			tally: Map({
+		// 				'Trainspotting': 3,
+		// 				'28 days later': 3
+		// 			}),
+		// 		}),
+		// 		entries: List.of('Sunshine', 'Millions', '127 Hours')
+		// 	});
+		// 	const nextState = next(state);
+
+		// 	expect(nextState).to.equal(Map({
+		// 		vote: Map({
+		// 			pair: List.of('Sunshine', 'Millions')
+		// 		}),
+		// 		entries: List.of('127 hours', 'Trainspotting', '28 days later')
+		// 	}));
+
+		// });
+
+		it('puts winner of current vote back to entries', () => {
+    const state = Map({
+      vote: Map({
+        pair: List.of('Trainspotting', '28 Days Later'),
+        tally: Map({
+          'Trainspotting': 4,
+          '28 Days Later': 2
+        })
+      }),
+      entries: List.of('Sunshine', 'Millions', '127 Hours')
+    });
+    const nextState = next(state);
+    expect(nextState).to.equal(Map({
+      vote: Map({
+        pair: List.of('Sunshine', 'Millions')
+      }),
+      entries: List.of('127 Hours', 'Trainspotting')
+    }));
+  });
+
+  it('puts both from tied vote back to entries', () => {
+    const state = Map({
+      vote: Map({
+        pair: List.of('Trainspotting', '28 Days Later'),
+        tally: Map({
+          'Trainspotting': 3,
+          '28 Days Later': 3
+        })
+      }),
+      entries: List.of('Sunshine', 'Millions', '127 Hours')
+    });
+    const nextState = next(state);
+    expect(nextState).to.equal(Map({
+      vote: Map({
+        pair: List.of('Sunshine', 'Millions')
+      }),
+      entries: List.of('127 Hours', 'Trainspotting', '28 Days Later')
+    }));
+  });
+
 	});
 
 });
